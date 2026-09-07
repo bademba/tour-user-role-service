@@ -1,8 +1,5 @@
 package com.kendirita.tour_user_role_service.service;
 
-import com.kendirita.tour_user_role_service.entity.Profile;
-import com.kendirita.tour_user_role_service.entity.Roles;
-import com.kendirita.tour_user_role_service.entity.User;
 import com.kendirita.tour_user_role_service.entity.UserRole;
 import com.kendirita.tour_user_role_service.repository.UserRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,28 +14,14 @@ public class UserRoleService {
     @Autowired
     private UserRoleRepository userRoleRepository;
 
-    //create new user
+    //create new user role
     @Transactional
     public UserRole createUserRole(UserRole userRole) {
 
-//        if (userRoleRepository.existsByEmail(userRole.getUser().getEmail())) {
         if (userRoleRepository.existsByEmail(userRole.getEmail())) {
             throw new IllegalStateException("UserRole  with this Email already exists");
         }
 
-//        Profile profile = userRole.;
-//
-//        if (profile != null) {
-//            profile.setUser(user);
-//            profile.setFullName(user.getFullName());
-//            profile.setEmail(user.getEmail());
-//        }
-
-//        UserRole ur = user.getUserRole();
-//        if (ur != null){
-//            userRole.setUser(user);
-//            user.setUserRole(userRole);
-//        }
         if (userRole.getEmail() !=null){
             userRole.setRole(userRole.getRole());
         }
@@ -46,12 +29,12 @@ public class UserRoleService {
         return userRoleRepository.save(userRole);
     }
 
-    //search user by email
+    //search user role by email
     public UserRole searchByEmail(String email){
         return userRoleRepository.searchByEmail(email);
     }
 
-    //fetch all users
+    //fetch all user roles
     public List<UserRole> listUsers(){
         return userRoleRepository.findAll();
     }
