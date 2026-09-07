@@ -12,7 +12,7 @@ public class UserRoleResponse {
 
     private String id;
     private Roles role;
-    private User user;
+    private String email;
 
 
     public static UserRoleResponse from(UserRole userRole) {
@@ -20,9 +20,7 @@ public class UserRoleResponse {
         UserRoleResponse dto = new UserRoleResponse();
         dto.id = userRole.getId();
         dto.role = userRole.getRole();
-        dto.user=userRole.getUser();
-
-
+        dto.email=userRole.getEmail();
         return dto;
     }
 
@@ -34,7 +32,8 @@ public class UserRoleResponse {
         return role;
     }
 
-    public User getUser() {
-        return user;
+
+    public String getEmail() {
+        return email;
     }
 }
