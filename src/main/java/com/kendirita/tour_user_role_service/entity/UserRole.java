@@ -1,0 +1,71 @@
+package com.kendirita.tour_user_role_service.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kendirita.tour_user_role_service.util.HybridIdGenerator;
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "user_roles")
+public class UserRole {
+    @Id
+    @Column(length = 10, nullable = false, unique = true)
+    private String id;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Roles role;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
+
+    @Column(name = "email")
+    private String email;
+
+    public UserRole(){}
+
+    @PrePersist
+    protected void onCreate() {
+        if (this.id == null) {
+            this.id = HybridIdGenerator.generate();
+        }
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Roles getRole() {
+        return role;
+    }
+
+
+    public void setRoles(Roles role) {
+        this.role = role;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+}
