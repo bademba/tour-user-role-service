@@ -3,10 +3,7 @@ package com.kendirita.tour_user_role_service.dto;
 
 
 import com.kendirita.tour_user_role_service.entity.Roles;
-import com.kendirita.tour_user_role_service.entity.User;
 import com.kendirita.tour_user_role_service.entity.UserRole;
-
-import java.util.Date;
 
 public class UserRoleResponse {
 
