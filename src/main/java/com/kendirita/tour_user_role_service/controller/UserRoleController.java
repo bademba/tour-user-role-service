@@ -48,7 +48,7 @@ public class UserRoleController {
     public ResponseEntity<Object> listUserRole(){
         List<UserRole> userRole = userRoleService.listUsers();
         List<UserRoleResponse> userRoleResponse =userRole.stream().map(UserRoleResponse::from).toList();
-        return ResponseHandler.generateResponse(UUID.randomUUID(),"Users Roles found",HttpStatus.OK, userRoleResponse,TimestampUtil.now());
+        return ResponseHandler.generateResponse(UUID.randomUUID(),"User Roles found",HttpStatus.OK, userRoleResponse,TimestampUtil.now());
     }
 
     @PutMapping("/users/user-role/{email}")
@@ -57,13 +57,12 @@ public class UserRoleController {
         if(currentUserRole==null){
             return ResponseHandler.generateResponse(UUID.randomUUID(),"UserRole not found",HttpStatus.NOT_FOUND,"",TimestampUtil.now());
         }
-        currentUserRole.setUser(userRole.getUser());
 
-        //update existing user profile
-//        if(currentUserRole != null) {
-//            currentUser.getProfile().setPhone(user.getProfile().getPhone());
-//            currentUser.getProfile().setAvatarUrl(user.getProfile().getAvatarUrl());
-//        }
+        //Update the existing user's role
+        if (currentUserRole !=null){
+            currentUserRole.setRole(userRole.getRole());
+        }
+
         UserRole updatedUser = userRoleRepository.save(currentUserRole);
         return ResponseHandler.generateResponse(UUID.randomUUID(),"UserRole updated",HttpStatus.OK, UserRoleResponse.from(updatedUser),TimestampUtil.now());
     }
