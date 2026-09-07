@@ -26,6 +26,7 @@ Response
     "timestamp": "07-09-2026 12:37:58"
 }
 ```
+---
 
 2. **Create User role**
 
@@ -55,6 +56,8 @@ Response
 }
 ```
 
+---
+
 3. **Fetch single user role**
 
 **GET** localhost:9194/v2/tour/users/user-role/anne@mail.com
@@ -75,6 +78,8 @@ Response
     "timestamp": "07-09-2026 12:11:31"
 }
 ```
+---
+
 4. **Update User role**
 
 **PUT** localhost:9194/v2/tour/users/user-role/anne@mail.com
@@ -101,6 +106,8 @@ Response 200 OK
     "timestamp": "07-09-2026 12:13:12"
 }
 ```
+
+---
 
 5. **Delete User**
 
